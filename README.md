@@ -24,8 +24,8 @@ It's a **depth tool**: it reads a full timeline (often 100k+ tokens), built for 
 
 ## Two outputs
 
-- **Dossier** — one holistic profile JSON ([`output.schema.json`](output.schema.json)): mind, voice, terrain, arc.
-- **Annual + monthly report** — a time-series breakdown ([`timeline/schema.json`](timeline/schema.json)) with computed style metrics, content themes, tags, and the tag-over-time matrix shown above.
+- **Dossier** — one holistic profile JSON ([`output.schema.json`](skills/x-persona/output.schema.json)): mind, voice, terrain, arc.
+- **Annual + monthly report** — a time-series breakdown ([`timeline/schema.json`](skills/x-persona/timeline/schema.json)) with computed style metrics, content themes, tags, and the tag-over-time matrix shown above.
 
 ![Annual report](docs/report-full.png)
 
@@ -54,10 +54,10 @@ Use the bundled **official X API adapter** — bring your own X API credentials 
 
 ```bash
 # put X_API_KEY + X_API_SECRET (or X_BEARER_TOKEN) in .env — see .env.example
-node --env-file=.env scripts/fetch_xapi.mjs <handle> > corpus.json
+node --env-file=.env skills/x-persona/scripts/fetch_xapi.mjs <handle> > corpus.json
 ```
 
-It uses the sanctioned X API v2 (the official user-timeline returns the most recent ~3,200 tweets). The output is a JSON array shaped like [`corpus.schema.json`](corpus.schema.json) (sample: [`examples/synthetic-account.json`](examples/synthetic-account.json)):
+It uses the sanctioned X API v2 (the official user-timeline returns the most recent ~3,200 tweets). The output is a JSON array shaped like [`corpus.schema.json`](skills/x-persona/corpus.schema.json) (sample: [`examples/synthetic-account.json`](examples/synthetic-account.json)):
 
 ```json
 [ { "id": "...", "text": "...", "created_at": "2025-07-22T17:33:00.000Z", "is_retweet": false, "is_reply": false, "lang": "en" } ]
@@ -67,8 +67,8 @@ Want full history instead of the ~3,200 cap, or a different source? Supply your 
 
 ### 2. Run it
 
-- **Dossier:** point a skill-aware Claude (e.g. Claude Code) at this skill + your `corpus.json`; it follows [`prompt.md`](prompt.md) and returns a profile matching [`output.schema.json`](output.schema.json).
-- **Timeline report:** `node scripts/period_stats.mjs corpus.json > stats.json`, run a per-year reader over each year ([`timeline/prompt.md`](timeline/prompt.md)), then `node scripts/assemble_report.mjs stats.json <readers-out-dir> [tagmap.json] > report.json`. Open `report.html` to view it.
+- **Dossier:** point a skill-aware Claude (e.g. Claude Code) at this skill + your `corpus.json`; it follows [`prompt.md`](skills/x-persona/prompt.md) and returns a profile matching [`output.schema.json`](skills/x-persona/output.schema.json).
+- **Timeline report:** `node skills/x-persona/scripts/period_stats.mjs corpus.json > stats.json`, run a per-year reader over each year ([`timeline/prompt.md`](skills/x-persona/timeline/prompt.md)), then `node skills/x-persona/scripts/assemble_report.mjs stats.json <readers-out-dir> [tagmap.json] > report.json`. Open `report.html` to view it.
 
 ## Demo pages
 

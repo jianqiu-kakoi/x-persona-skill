@@ -1,0 +1,8 @@
+{
+  "name": "x-persona",
+  "description": "Read an X/Twitter account the way you'd study a person — deep, evidence-grounded analysis of how they think, how they speak, what they engage with, and how all of it has evolved over the years. Not a personality quiz; every claim is backed by a verbatim tweet.",
+  "version": "0.1.0",
+  "author": { "name": "jianqiu-kakoi" },
+  "homepage": "https://github.com/jianqiu-kakoi/x-persona-skill",
+  "license": "MIT"
+}

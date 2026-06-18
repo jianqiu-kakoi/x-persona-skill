@@ -28,7 +28,7 @@ Use the bundled official X API adapter (bring your own X API credentials in `.en
 node --env-file=.env scripts/fetch_xapi.mjs <handle> > corpus.json
 ```
 
-It calls the sanctioned X API v2 (most recent ~3,200 tweets) and writes a JSON array shaped like [`corpus.schema.json`](corpus.schema.json) (sample: [`examples/synthetic-account.json`](examples/synthetic-account.json)). `created_at` must be ISO 8601 — the year/month analysis sorts on it.
+It calls the sanctioned X API v2 (most recent ~3,200 tweets) and writes a JSON array shaped like [`corpus.schema.json`](corpus.schema.json). `created_at` must be ISO 8601 — the year/month analysis sorts on it.
 
 For full history beyond the ~3,200 cap, or a different source, supply your own corpus matching the schema (e.g. your **X data export**: Settings → *Download an archive of your data*). The analysis skill itself never fetches — acquisition is a separate, swappable step, so the compliance choice is yours.
 

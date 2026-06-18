@@ -1,0 +1,12 @@
+{
+  "name": "x-persona-skill",
+  "description": "x-persona — deep, longitudinal analysis of an X/Twitter account: how they think, speak, engage, and evolve over time.",
+  "owner": { "name": "jianqiu-kakoi" },
+  "plugins": [
+    {
+      "name": "x-persona",
+      "source": "./",
+      "description": "Deep, longitudinal X/Twitter account analysis — how an account thinks, speaks, engages, and evolves over time."
+    }
+  ]
+}
