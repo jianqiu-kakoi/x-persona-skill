@@ -20,15 +20,17 @@ Not for: a quick "rate my vibe" readout, or writing content as someone (differen
 
 ## How it works
 
-### 1. Provide the tweet corpus
+### 1. Get the tweet corpus
 
-x-persona does **not** fetch or scrape. You supply a corpus — a JSON array of the account's tweets, shaped like [`corpus.schema.json`](corpus.schema.json) (see [`examples/synthetic-account.json`](examples/synthetic-account.json) for a sample):
+Use the bundled official X API adapter (bring your own X API credentials in `.env` — see `.env.example`):
 
-```json
-[ { "id": "...", "text": "...", "created_at": "2025-07-22T17:33:00.000Z", "is_retweet": false, "is_reply": false, "lang": "en" } ]
+```bash
+node --env-file=.env scripts/fetch_xapi.mjs <handle> > corpus.json
 ```
 
-`created_at` must be ISO 8601 — the year/month analysis sorts on it. Produce the corpus however fits your situation and the platform's terms: your own **X data export** (Settings → Your account → *Download an archive of your data* — full history, your own account), the official X API, or your own tooling. Keeping data acquisition out of the tool is deliberate: it stays a pure analyzer, and the compliance choice is yours.
+It calls the sanctioned X API v2 (most recent ~3,200 tweets) and writes a JSON array shaped like [`corpus.schema.json`](corpus.schema.json) (sample: [`examples/synthetic-account.json`](examples/synthetic-account.json)). `created_at` must be ISO 8601 — the year/month analysis sorts on it.
+
+For full history beyond the ~3,200 cap, or a different source, supply your own corpus matching the schema (e.g. your **X data export**: Settings → *Download an archive of your data*). The analysis skill itself never fetches — acquisition is a separate, swappable step, so the compliance choice is yours.
 
 ### 2. Analyze
 

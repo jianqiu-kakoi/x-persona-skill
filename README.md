@@ -48,15 +48,22 @@ The deterministic layer is exact and free; the LLM layer adds interpretation. Ta
 
 ## Usage
 
-### 1. Provide a corpus
+### 1. Get a corpus
 
-x-persona **does not fetch or scrape** — you supply the data: a JSON array of the account's tweets, shaped like [`corpus.schema.json`](corpus.schema.json) (sample: [`examples/synthetic-account.json`](examples/synthetic-account.json)):
+Use the bundled **official X API adapter** — bring your own X API credentials and pull a timeline into the corpus shape:
+
+```bash
+# put X_API_KEY + X_API_SECRET (or X_BEARER_TOKEN) in .env — see .env.example
+node --env-file=.env scripts/fetch_xapi.mjs <handle> > corpus.json
+```
+
+It uses the sanctioned X API v2 (the official user-timeline returns the most recent ~3,200 tweets). The output is a JSON array shaped like [`corpus.schema.json`](corpus.schema.json) (sample: [`examples/synthetic-account.json`](examples/synthetic-account.json)):
 
 ```json
 [ { "id": "...", "text": "...", "created_at": "2025-07-22T17:33:00.000Z", "is_retweet": false, "is_reply": false, "lang": "en" } ]
 ```
 
-`created_at` must be ISO 8601 (the year/month analysis sorts on it). Produce the corpus however fits your situation and the platform's terms — your own **X data export** (Settings → *Download an archive of your data*, full history for your own account), the official X API ([`scripts/fetch_xapi.mjs`](scripts/fetch_xapi.mjs), recent ~3,200 tweets), or your own tooling. Acquisition is intentionally left to you, so the tool stays a pure analyzer and the compliance choice is yours.
+Want full history instead of the ~3,200 cap, or a different source? Supply your own corpus matching the schema — e.g. your **X data export** (Settings → *Download an archive of your data*). `created_at` must be ISO 8601 (the year/month analysis sorts on it). The analysis skill itself never fetches; acquisition is a separate, swappable step.
 
 ### 2. Run it
 
