@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "x-persona input corpus",
+  "description": "The input the skill analyzes: a JSON array of one account's tweets. x-persona does NOT fetch or scrape — you supply this file, produced however suits you (your X data export, the official API, your own tooling). See examples/synthetic-account.json for a sample.",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "id": { "type": "string", "description": "Tweet id (any stable unique string)." },
+      "text": { "type": "string", "description": "The tweet's text, verbatim." },
+      "created_at": { "type": "string", "description": "ISO 8601 timestamp, e.g. 2025-07-22T17:33:00.000Z. Used to sort and to build the year/month breakdown — required for the longitudinal analysis." },
+      "is_retweet": { "type": "boolean", "description": "True if this is a retweet of someone else." },
+      "is_reply": { "type": "boolean", "description": "True if this is a reply." },
+      "lang": { "type": ["string", "null"], "description": "Optional BCP-47-ish language code (e.g. \"en\"), or null." }
+    },
+    "required": ["id", "text", "created_at"],
+    "additionalProperties": true
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "type": "object",
+  "description": "One period (a year) of an X account, extracted by a single reader. Monthly breakdown drills down inside the year. Tags are free-form here; a later pass unifies them into a shared taxonomy so they can be tracked across periods.",
+  "properties": {
+    "period": { "type": "string", "description": "The year, YYYY." },
+    "era_label": { "type": "string", "description": "A short human label for what this year was about, e.g. 'Journalist · AAJA' or 'AI builder · shipping'." },
+    "content_themes": {
+      "type": "array",
+      "description": "What they actually posted about this year, weighted.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "theme": { "type": "string" },
+          "weight": { "type": "number", "description": "0-1 share of this year's attention." },
+          "example_quote": { "type": "string", "description": "A verbatim tweet from this year." }
+        },
+        "required": ["theme", "weight", "example_quote"],
+        "additionalProperties": false
+      }
+    },
+    "free_tags": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Free-form topic/stance/mode tags for this year (lowercase, short). Don't worry about matching other years — unification happens later."
+    },
+    "voice_reading": { "type": "string", "description": "Qualitative reading of how they wrote this year, grounded in the supplied computed stats (sentence length, emoji/hashtag/link/reply rates, vocabulary). Note what the numbers imply about register and mode." },
+    "entities": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "relationship": { "type": "string" }
+        },
+        "required": ["name", "relationship"],
+        "additionalProperties": false
+      }
+    },
+    "notable_tweets": {
+      "type": "array",
+      "description": "2-4 tweets that best capture this year.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "text": { "type": "string", "description": "Verbatim." },
+          "why": { "type": "string" }
+        },
+        "required": ["text", "why"],
+        "additionalProperties": false
+      }
+    },
+    "monthly": {
+      "type": "array",
+      "description": "Month-level drill-down for months that have tweets. Keep each entry light.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "month": { "type": "string", "description": "YYYY-MM." },
+          "focus": { "type": "string", "description": "One line: what this month was about." },
+          "free_tags": { "type": "array", "items": { "type": "string" } },
+          "note": { "type": "string", "description": "Any shift, spike, or notable event this month; empty string if unremarkable." }
+        },
+        "required": ["month", "focus", "free_tags", "note"],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": ["period", "era_label", "content_themes", "free_tags", "voice_reading", "entities", "notable_tweets", "monthly"],
+  "additionalProperties": false
+}

@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>x-persona</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..900;1,9..144,400..700&family=Hanken+Grotesk:wght@300..800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0d0f13; --ink-2:#13161c; --line:#262b34;
+    --paper:#ece7da; --muted:#8d8b81; --faint:#5c5f68;
+    --signal:#d4f24a; --clay:#e8884a;
+    --serif:"Fraunces",Georgia,serif; --sans:"Hanken Grotesk",system-ui,sans-serif; --mono:"JetBrains Mono",ui-monospace,monospace;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--ink); color:var(--paper);
+    font-family:var(--sans); font-weight:350; line-height:1.6;
+    -webkit-font-smoothing:antialiased; letter-spacing:.005em; min-height:100vh;
+  }
+  body::before{
+    content:""; position:fixed; inset:0; pointer-events:none; z-index:0;
+    background:radial-gradient(120% 80% at 80% -10%, rgba(212,242,74,.07), transparent 50%),
+               radial-gradient(90% 70% at -10% 110%, rgba(232,136,74,.05), transparent 55%);
+  }
+  body::after{
+    content:""; position:fixed; inset:0; pointer-events:none; z-index:1; opacity:.04;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .wrap{position:relative; z-index:2; width:100%; max-width:1080px; margin:0 auto; padding:0 28px}
+
+  .hero{padding:90px 0 10px}
+  .kicker{font-family:var(--mono); font-size:12px; letter-spacing:.42em; text-transform:uppercase; color:var(--signal); margin:0 0 26px}
+  .kicker .dot{display:inline-block; width:6px; height:6px; background:var(--signal); border-radius:50%; margin-right:12px; vertical-align:middle; box-shadow:0 0 12px var(--signal)}
+  .tagline{font-family:var(--serif); font-optical-sizing:auto; font-weight:600; font-size:clamp(46px,9vw,108px); line-height:.96; letter-spacing:-.025em; margin:0}
+  .tagline em{font-style:italic; color:var(--signal)}
+  .sub{font-size:clamp(17px,2.1vw,21px); color:#cfcabd; max-width:62ch; margin:32px 0 0; line-height:1.55}
+  .sub b{color:var(--paper); font-weight:600}
+
+  .pipeline{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin:54px 0 90px}
+  .step{background:var(--ink-2); border:1px solid var(--line); border-radius:8px; padding:24px; position:relative}
+  .step .sn{font-family:var(--mono); font-size:11px; color:var(--signal); letter-spacing:.2em}
+  .step h4{font-family:var(--serif); font-weight:600; font-size:21px; margin:12px 0 8px}
+  .step p{margin:0; font-size:14.5px; color:var(--muted); line-height:1.5}
+  .step .cmd{font-family:var(--mono); font-size:11.5px; color:#cdd8b0; background:#0a0c0f; border:1px solid var(--line); border-radius:5px; padding:9px 11px; margin-top:14px; overflow-x:auto; white-space:nowrap}
+
+  .reveal{opacity:0; transform:translateY(20px); animation:rise .8s cubic-bezier(.2,.8,.2,1) forwards}
+  .reveal:nth-child(2){animation-delay:.08s}
+  .reveal:nth-child(3){animation-delay:.16s}
+  .pipeline .step{opacity:0; transform:translateY(20px); animation:rise .7s cubic-bezier(.2,.8,.2,1) forwards}
+  .pipeline .step:nth-child(1){animation-delay:.26s}
+  .pipeline .step:nth-child(2){animation-delay:.34s}
+  .pipeline .step:nth-child(3){animation-delay:.42s}
+  @keyframes rise{to{opacity:1; transform:none}}
+
+  footer{position:relative; z-index:2; width:100%; max-width:1080px; margin:0 auto; padding:24px 28px 60px; color:var(--faint); font-family:var(--mono); font-size:12px}
+  footer a{color:var(--muted); text-decoration:none}
+  footer a:hover{color:var(--signal)}
+
+  @media(max-width:680px){ .pipeline{grid-template-columns:1fr} }
+</style>
+</head>
+<body>
+  <main class="wrap">
+    <section class="hero">
+      <p class="kicker reveal"><span class="dot"></span>x-persona · open-source Claude skill</p>
+      <h1 class="tagline reveal">Read an X account<br>like you'd <em>study a person.</em></h1>
+      <p class="sub reveal">Point it at any X/Twitter handle and it reads the <b>whole timeline</b> — then returns a structured dossier of <b>how they think, how they speak, what they engage with, and how all of it has changed over the years.</b> Not a personality quiz. Every claim is backed by a verbatim tweet.</p>
+    </section>
+    <div class="pipeline">
+      <div class="step"><span class="sn">01 / corpus</span><h4>Bring a timeline</h4><p>A JSON array of tweets — from your X data export, the API, anywhere. The tool itself never scrapes.</p><div class="cmd">corpus.json · see corpus.schema.json</div></div>
+      <div class="step"><span class="sn">02 / analyze</span><h4>Read for patterns</h4><p>Separate original voice from replies, quote the evidence, and read time as a dimension.</p><div class="cmd">claude · run the x-persona skill</div></div>
+      <div class="step"><span class="sn">03 / dossier</span><h4>Structured profile</h4><p>One JSON object — mind, voice, terrain, arc — validated against the schema.</p><div class="cmd">output.schema.json ✓</div></div>
+    </div>
+  </main>
+  <footer><a href="https://github.com/jianqiu-kakoi/x-persona-skill">github.com/jianqiu-kakoi/x-persona-skill</a></footer>
+</body>
+</html>

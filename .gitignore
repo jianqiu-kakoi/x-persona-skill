@@ -1,0 +1,18 @@
+# Secrets
+.env
+.env.local
+*.key
+
+# Real-person data — never commit. Only synthetic examples under examples/
+# are allowed in the repo. Treat fetched corpora and generated profiles as private.
+corpus.json
+corpus-*.json
+*-corpus.json
+profiles/
+*-workspace/
+# (corpus.schema.json is the input-format spec and IS committed)
+!corpus.schema.json
+
+# Node / OS
+node_modules/
+.DS_Store

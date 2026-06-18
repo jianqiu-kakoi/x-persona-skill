@@ -1,0 +1,44 @@
+{
+  "id": "x-persona",
+  "name": "X Persona Analysis",
+  "version": "0.1.0",
+  "purpose": "Understand a Twitter/X account the way you'd study a person, not score a personality test. Builds a deep, evidence-grounded profile of how they think (mental models, beliefs, reasoning, blind spots), how they speak (voice and style), what topics they engage with — and, crucially, how all of that has evolved over time. The two differentiators vs. existing tools (Wordware-style viral personality readouts, Big-Five scorers like Apply Magic Sauce, voice-cloners): depth of thinking and a real longitudinal trajectory. Not a shareable personality card; a structured profile that feeds a downstream agent workflow.",
+  "whenToUse": "A manual Agent Run asking to deeply understand, profile, or track the evolution of an X/Twitter account — a founder, a competitor, a thinker, or yourself. This is a depth tool (consumes the full timeline, ~100k+ tokens), not a quick personality quiz. The caller supplies a normalized tweet corpus JSON (see corpus.schema.json); the skill does not fetch or scrape.",
+  "scenes": ["learning"],
+  "triggers": {
+    "actions": ["x-persona", "twitter-persona", "analyze-account"],
+    "voiceKeywords": [
+      "twitter persona",
+      "analyze account",
+      "analyze this account",
+      "profile this user",
+      "how do they think",
+      "their voice",
+      "writing style",
+      "分析账号",
+      "推特",
+      "说话风格",
+      "怎么想的"
+    ]
+  },
+  "inputs": ["handle", "tweet corpus (normalized JSON: text + created_at per tweet)", "trigger utterance"],
+  "output": {
+    "schemaFile": "output.schema.json",
+    "artifact": "persona profile"
+  },
+  "tools": ["tweet corpus read"],
+  "dataContract": {
+    "note": "The skill does not fetch data. The caller supplies a tweet corpus (JSON array, see corpus.schema.json) and injects it as {{tweets}} along with {{handle}}; the runtime also provides {{now}}, {{history}}, {{utterance}}.",
+    "corpusSchema": "corpus.schema.json",
+    "tweetShape": { "id": "string", "text": "string", "created_at": "ISO 8601", "is_retweet": "boolean", "is_reply": "boolean", "lang": "string" }
+  },
+  "edgeCases": [
+    "Thin corpus (few tweets or short window): lower confidence, say so in notes, and do not over-claim trajectory.",
+    "Mostly retweets/replies: separate amplified views from original takes; flag that voice signal is weak.",
+    "No timestamps available: fill dynamics with empty arrays and note that longitudinal analysis was skipped rather than inventing a trajectory.",
+    "Quote everything: every claim about thinking/voice/topics must cite a real tweet from the corpus, never a paraphrase invented to fit a pattern."
+  ],
+  "defaultCommand": "Analyze the provided X/Twitter account and return a persona profile.",
+  "runner": "codex",
+  "runKind": "analysis"
+}

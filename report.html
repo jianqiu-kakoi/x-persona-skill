@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>x-persona · timeline report</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..900;1,9..144,400..700&family=Hanken+Grotesk:wght@300..800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0d0f13; --ink-2:#13161c; --panel:#171b22; --line:#262b34;
+    --paper:#ece7da; --muted:#8d8b81; --faint:#5c5f68;
+    --signal:#d4f24a; --signal-dim:#9bb336; --clay:#e8884a;
+    --serif:"Fraunces",Georgia,serif; --sans:"Hanken Grotesk",system-ui,sans-serif; --mono:"JetBrains Mono",ui-monospace,monospace;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--ink);color:var(--paper);font-family:var(--sans);font-weight:350;line-height:1.6;-webkit-font-smoothing:antialiased}
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(120% 80% at 85% -10%,rgba(212,242,74,.06),transparent 50%),radial-gradient(90% 70% at -10% 110%,rgba(232,136,74,.05),transparent 55%)}
+  .wrap{position:relative;z-index:2;max-width:1100px;margin:0 auto;padding:0 28px}
+
+  header.mast{padding:64px 0 30px;border-bottom:1px solid var(--line)}
+  .kicker{font-family:var(--mono);font-size:11px;letter-spacing:.4em;text-transform:uppercase;color:var(--signal);margin:0 0 18px}
+  .kicker .dot{display:inline-block;width:6px;height:6px;background:var(--signal);border-radius:50%;margin-right:10px;vertical-align:middle;box-shadow:0 0 12px var(--signal)}
+  .mast h1{font-family:var(--serif);font-weight:600;font-size:clamp(38px,7vw,74px);line-height:.95;letter-spacing:-.02em;margin:0}
+  .mast h1 .at{color:var(--faint);font-weight:300;font-style:italic}
+  .mast .meta{font-family:var(--mono);font-size:13px;color:var(--muted);margin-top:18px}
+  .synbadge{display:inline-block;font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--clay);border:1px solid var(--clay);border-radius:100px;padding:5px 12px;margin-bottom:18px}
+  .synbanner{margin-top:14px;font-family:var(--mono);font-size:12px;color:var(--faint)}
+
+  section{padding:48px 0;border-bottom:1px solid var(--line)}
+  .h{font-family:var(--mono);font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);margin:0 0 22px}
+
+  /* tag-over-time matrix */
+  .matrix{overflow-x:auto}
+  table.tg{border-collapse:collapse;width:100%;font-size:13px}
+  table.tg th{font-family:var(--mono);font-weight:400;font-size:11px;color:var(--faint);padding:6px 8px;text-align:center;border-bottom:1px solid var(--line)}
+  table.tg th.tn{text-align:left;color:var(--muted)}
+  table.tg td{padding:5px 8px;text-align:center;border-bottom:1px solid #1c2027}
+  table.tg td.tn{text-align:left;font-family:var(--mono);font-size:12px;color:#cfcabd;white-space:nowrap}
+  .cell{display:inline-block;width:11px;height:11px;border-radius:3px;background:#1e222a}
+  .cell.on{background:var(--signal);box-shadow:0 0 8px rgba(212,242,74,.4)}
+
+  /* year blocks */
+  .year{padding:30px 0;border-bottom:1px solid var(--line)}
+  .year:last-child{border-bottom:0}
+  .yhead{display:flex;align-items:baseline;gap:18px;flex-wrap:wrap}
+  .yhead .yr{font-family:var(--serif);font-weight:700;font-size:42px;line-height:1;color:var(--signal)}
+  .yhead .lbl{font-family:var(--serif);font-style:italic;font-size:22px;color:#ded9cc}
+  .yhead .sparse{font-family:var(--mono);font-size:11px;color:var(--faint);border:1px solid var(--line);padding:3px 8px;border-radius:100px}
+
+  .stat-chips{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 6px}
+  .sc{font-family:var(--mono);font-size:11.5px;color:#cfcabd;background:var(--ink-2);border:1px solid var(--line);border-radius:6px;padding:6px 10px}
+  .sc b{color:var(--signal);font-weight:500}
+
+  .cols{display:grid;grid-template-columns:1.4fr 1fr;gap:30px;margin-top:18px}
+  .blk h4{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--faint);margin:0 0 12px}
+  .theme{margin-bottom:14px}
+  .theme .tt{display:flex;justify-content:space-between;gap:12px;align-items:baseline}
+  .theme .tn{font-family:var(--serif);font-weight:600;font-size:17px}
+  .theme .tw{font-family:var(--mono);font-size:11px;color:var(--muted)}
+  .tbar{height:4px;background:var(--ink-2);border-radius:2px;overflow:hidden;margin:7px 0}
+  .tbar>i{display:block;height:100%;background:linear-gradient(90deg,var(--clay),var(--signal))}
+  .q{font-family:var(--serif);font-style:italic;font-size:14.5px;color:#d8d3c6;border-left:2px solid var(--clay);padding-left:12px;margin:6px 0 0;line-height:1.4}
+  .voice{font-size:15px;color:#cfcabd;line-height:1.55}
+  .chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px}
+  .chip{font-family:var(--mono);font-size:11.5px;padding:5px 10px;border:1px solid var(--line);border-radius:100px;color:#cfcabd;background:var(--ink-2)}
+  .notable{margin-top:14px}
+  .notable .nt{border-left:2px solid var(--signal-dim);padding:8px 0 8px 12px;margin-bottom:10px}
+  .notable .nt .x{font-size:14px;color:#ddd8cb}
+  .notable .nt .w{font-family:var(--mono);font-size:11px;color:var(--faint);margin-top:4px}
+  .ent{font-family:var(--mono);font-size:12px;color:var(--muted);margin-top:10px;line-height:1.7}
+  .ent b{color:var(--signal);font-weight:500}
+
+  details.months{margin-top:16px;border:1px solid var(--line);border-radius:8px;background:var(--ink-2)}
+  details.months>summary{cursor:pointer;padding:12px 16px;font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+  details.months[open]>summary{border-bottom:1px solid var(--line);color:var(--signal)}
+  .mo{display:grid;grid-template-columns:90px 1fr;gap:14px;padding:13px 16px;border-bottom:1px solid #1c2027}
+  .mo:last-child{border-bottom:0}
+  .mo .mm{font-family:var(--mono);font-size:12px;color:var(--clay)}
+  .mo .mf{font-size:14px;color:#d8d3c6}
+  .mo .mn{font-size:13px;color:var(--muted);margin-top:3px}
+  .mo .mchips{margin-top:6px}
+  .mo .mchips .chip{font-size:10.5px;padding:3px 8px}
+
+  footer{padding:40px 0 70px;color:var(--faint);font-family:var(--mono);font-size:12px;line-height:1.8}
+  .status{padding:120px 28px;text-align:center}
+  .status h1{font-family:var(--serif);font-size:30px;margin:0 0 12px}
+  .status code{font-family:var(--mono);background:var(--ink-2);padding:2px 7px;border-radius:4px;color:var(--signal);font-size:13px}
+  @media(max-width:760px){.cols{grid-template-columns:1fr;gap:18px}}
+</style>
+</head>
+<body>
+<main id="app" class="wrap"><div class="status"><h1>Loading report…</h1></div></main>
+<script>
+const esc=s=>String(s==null?"":s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const fmt=s=>{try{return new Date(s).toLocaleDateString("en-US",{year:"numeric",month:"short",day:"numeric"})}catch(e){return s}};
+
+function render(r){
+  const years=(r.years||[]).filter(y=>y.analyzed!==false && (y.era_label||y.content_themes?.length));
+  // matrix: tags x analyzed years
+  const yrCols=years.map(y=>y.period);
+  const tags=Object.keys(r.tag_timeline||{}).sort((a,b)=>{
+    const ca=Object.keys(r.tag_timeline[a]).length, cb=Object.keys(r.tag_timeline[b]).length;
+    return cb-ca || a.localeCompare(b);
+  });
+  const matrix = tags.length ? `
+    <section><p class="h">Tags over time · what rose and fell</p>
+    <div class="matrix"><table class="tg"><thead><tr><th class="tn">tag</th>${yrCols.map(y=>`<th>${esc(y)}</th>`).join("")}</tr></thead>
+    <tbody>${tags.map(t=>`<tr><td class="tn">${esc(t)}</td>${yrCols.map(y=>`<td><span class="cell ${r.tag_timeline[t][y]?"on":""}"></span></td>`).join("")}</tr>`).join("")}</tbody>
+    </table></div></section>` : "";
+
+  const yearBlocks=years.map(y=>{
+    const s=y.stats||{};
+    const chips=[
+      ["tweets",s.tweets],["orig/reply",`${s.originals}/${s.replies}`],["avg chars",s.avg_chars],
+      ["sent len",s.avg_sentence_len_words],["emoji%",s.emoji_tweet_pct],["hashtag%",s.hashtag_tweet_pct],
+      ["link%",s.link_tweet_pct],["q%",s.question_pct],["TTR",s.vocab_richness_ttr],
+      ["top @",(s.top_mentions&&s.top_mentions[0]?s.top_mentions[0].k:"—")]
+    ].map(([k,v])=>`<span class="sc">${k} <b>${esc(v)}</b></span>`).join("");
+    const themes=(y.content_themes||[]).map(t=>`
+      <div class="theme"><div class="tt"><span class="tn">${esc(t.theme)}</span><span class="tw">${Math.round((t.weight||0)*100)}%</span></div>
+        <div class="tbar"><i style="width:${Math.round((t.weight||0)*100)}%"></i></div>
+        <div class="q">${esc(t.example_quote)}</div></div>`).join("");
+    const chipsTags=(y.tags||y.free_tags||[]).map(t=>`<span class="chip">${esc(t)}</span>`).join("");
+    const notable=(y.notable_tweets||[]).map(n=>`<div class="nt"><div class="x">${esc(n.text)}</div><div class="w">${esc(n.why)}</div></div>`).join("");
+    const ents=(y.entities||[]).map(e=>`<b>${esc(e.name)}</b> ${esc(e.relationship)}`).join(" · ");
+    const months=(y.monthly||[]).map(m=>`
+      <div class="mo"><span class="mm">${esc(m.month)}</span><div>
+        <div class="mf">${esc(m.focus)}</div>
+        ${m.note?`<div class="mn">${esc(m.note)}</div>`:""}
+        ${(m.tags||m.free_tags||[]).length?`<div class="chips mchips">${(m.tags||m.free_tags).map(t=>`<span class="chip">${esc(t)}</span>`).join("")}</div>`:""}
+      </div></div>`).join("");
+    return `<div class="year">
+      <div class="yhead"><span class="yr">${esc(y.period)}</span><span class="lbl">${esc(y.era_label)}</span></div>
+      <div class="stat-chips">${chips}</div>
+      <div class="cols">
+        <div class="blk"><h4>What they posted about</h4>${themes||"<p class='voice'>—</p>"}
+          ${chipsTags?`<div class="chips">${chipsTags}</div>`:""}</div>
+        <div class="blk"><h4>How they wrote</h4><p class="voice">${esc(y.voice_reading)}</p>
+          ${ents?`<div class="ent">${ents}</div>`:""}
+          ${notable?`<div class="notable"><h4 style="margin-top:16px">Notable</h4>${notable}</div>`:""}</div>
+      </div>
+      ${months?`<details class="months"><summary>${(y.monthly||[]).length} monthly entries — drill down</summary>${months}</details>`:""}
+    </div>`;
+  }).join("");
+
+  document.getElementById("app").innerHTML=`
+    <header class="mast">
+      <p class="kicker"><span class="dot"></span>x-persona · annual + monthly report</p>
+      ${r.synthetic?`<div><span class="synbadge">⬡ synthetic demo · not a real person</span></div>`:""}
+      <h1><span class="at">@</span>${esc(r.handle||"")}</h1>
+      <div class="meta">${fmt(r.span?.start)} → ${fmt(r.span?.end)} · ${esc(r.total)} tweets · ${years.length} years analyzed · computed stats + per-year Sonnet reads</div>
+      ${r.synthetic?`<div class="synbanner">This account is fabricated to demonstrate the report format. No real account was analyzed.</div>`:""}
+    </header>
+    ${matrix}
+    <section><p class="h">Year by year</p>${yearBlocks}</section>
+    <footer>Rendered by <a href="https://github.com/jianqiu-kakoi/x-persona-skill" style="color:var(--muted)">x-persona</a> · deterministic stats + fan-out LLM reading. Real-person reports stay local (gitignored).</footer>`;
+  document.title="@"+r.handle+" · x-persona report";
+}
+
+(async function(){
+  const src=new URLSearchParams(location.search).get("src")||"examples/synthetic-report.json";
+  try{ const r=await fetch(src,{cache:"no-store"}); if(!r.ok) throw 0; render(await r.json()); }
+  catch(e){ document.getElementById("app").innerHTML=`<div class="status"><h1>No report loaded</h1>
+    <p>Couldn't fetch <code>${esc(src)}</code>. Serve over http: <code>python3 -m http.server</code>, or pass <code>?src=path/to/report.json</code>.</p></div>`; }
+})();
+</script>
+</body>
+</html>

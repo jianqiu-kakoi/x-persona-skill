@@ -1,0 +1,150 @@
+{
+  "type": "x-persona-timeline",
+  "synthetic": true,
+  "handle": "syntheticbuilds",
+  "span": { "start": "2022-01-18T09:12:00.000Z", "end": "2026-05-30T17:40:00.000Z" },
+  "total": 612,
+  "taxonomy": [
+    { "tag": "design-systems", "gloss": "Design systems & component libraries (corporate era)" },
+    { "tag": "corporate-process", "gloss": "Big-company process, meetings, org friction" },
+    { "tag": "frontend-craft", "gloss": "Frontend engineering craft" },
+    { "tag": "side-projects", "gloss": "Nights-and-weekends side projects" },
+    { "tag": "indie-hacking", "gloss": "Going indie, shipping solo" },
+    { "tag": "anti-scale", "gloss": "Skepticism of premature scale" },
+    { "tag": "local-first", "gloss": "Local-first software & data ownership" },
+    { "tag": "build-in-public", "gloss": "Building in public, distribution, audience" },
+    { "tag": "revenue-mrr", "gloss": "Revenue, MRR, sustainability" },
+    { "tag": "product-philosophy", "gloss": "Point of view as moat, small & sharp" },
+    { "tag": "mentoring", "gloss": "Encouraging other would-be indie devs" },
+    { "tag": "broadcast-mode", "gloss": "Link-heavy, announcement voice (early)" },
+    { "tag": "low-emoji", "gloss": "Minimal emoji use" }
+  ],
+  "tag_timeline": {
+    "design-systems": { "2022": true, "2023": true },
+    "corporate-process": { "2022": true, "2023": true },
+    "frontend-craft": { "2022": true, "2023": true, "2024": true },
+    "side-projects": { "2023": true, "2024": true },
+    "anti-scale": { "2023": true, "2024": true, "2025": true },
+    "indie-hacking": { "2024": true, "2025": true, "2026": true },
+    "local-first": { "2024": true, "2025": true, "2026": true },
+    "build-in-public": { "2025": true, "2026": true },
+    "revenue-mrr": { "2025": true, "2026": true },
+    "product-philosophy": { "2025": true, "2026": true },
+    "mentoring": { "2026": true },
+    "broadcast-mode": { "2022": true, "2023": true },
+    "low-emoji": { "2022": true, "2023": true, "2024": true, "2025": true, "2026": true }
+  },
+  "years": [
+    {
+      "period": "2022",
+      "era_label": "Design-system engineer at BigCorp",
+      "stats": { "tweets": 84, "originals": 79, "replies": 5, "avg_chars": 132.4, "avg_sentence_len_words": 16.2, "emoji_tweet_pct": 2.4, "hashtag_tweet_pct": 41.7, "link_tweet_pct": 58.3, "question_pct": 9.5, "exclaim_pct": 6.0, "vocab_richness_ttr": 0.402, "top_hashtags": [{ "k": "#designsystems", "n": 19 }, { "k": "#a11y", "n": 11 }, { "k": "#css", "n": 8 }], "top_mentions": [{ "k": "@uikit_demo", "n": 7 }, { "k": "@devpeer_demo", "n": 5 }], "lang_mix": [{ "k": "en", "n": 84 }] },
+      "content_themes": [
+        { "theme": "Design systems & component libraries", "weight": 0.42, "example_quote": "Shipped a new Button component to the design system today. 14 props, 6 variants, and a 40-line migration guide. This is the job now." },
+        { "theme": "Corporate process friction", "weight": 0.3, "example_quote": "Three meetings to align on a border radius. I miss when building meant building." },
+        { "theme": "Frontend craft & accessibility", "weight": 0.18, "example_quote": "Reminder: a div with an onClick is not a button. Your keyboard users can't reach it. #a11y" }
+      ],
+      "tags": ["design-systems", "corporate-process", "frontend-craft", "broadcast-mode", "low-emoji"],
+      "free_tags": ["design-systems", "component-library", "storybook", "a11y", "css", "big-company", "process-friction"],
+      "voice_reading": "A buttoned-up professional register. 42% of tweets carry a hashtag and 58% a link — this is announcement-and-resource mode, broadcasting work outward rather than conversing (only 5 replies all year). Sentences run long (~16 words) and emoji are near-absent; the voice is competent, a little weary, and clearly speaking to a peer audience of frontend engineers.",
+      "entities": [ { "name": "@uikit_demo", "relationship": "tool she builds around" }, { "name": "@devpeer_demo", "relationship": "engineer peer" } ],
+      "notable_tweets": [
+        { "text": "Three meetings to align on a border radius. I miss when building meant building.", "why": "First crack in the corporate facade — the frustration that later drives the pivot." }
+      ],
+      "monthly": [
+        { "month": "2022-03", "focus": "Component library migration grind", "free_tags": ["design-systems", "migration"], "note": "" },
+        { "month": "2022-09", "focus": "Accessibility advocacy picks up", "free_tags": ["a11y", "frontend-craft"], "note": "First thread to break 100 likes." }
+      ]
+    },
+    {
+      "period": "2023",
+      "era_label": "Restless: first side projects",
+      "stats": { "tweets": 96, "originals": 84, "replies": 12, "avg_chars": 146.8, "avg_sentence_len_words": 15.1, "emoji_tweet_pct": 3.1, "hashtag_tweet_pct": 22.9, "link_tweet_pct": 44.8, "question_pct": 14.6, "exclaim_pct": 9.4, "vocab_richness_ttr": 0.358, "top_hashtags": [{ "k": "#buildinpublic", "n": 9 }, { "k": "#designsystems", "n": 6 }], "top_mentions": [{ "k": "@devpeer_demo", "n": 11 }, { "k": "@indiehq_demo", "n": 4 }] , "lang_mix": [{ "k": "en", "n": 96 }] },
+      "content_themes": [
+        { "theme": "Weekend side projects", "weight": 0.34, "example_quote": "Spent the weekend building a tiny tool to track my reading. No roadmap, no Jira, no standup. Felt like myself again." },
+        { "theme": "Questioning scale & process", "weight": 0.28, "example_quote": "Half the complexity at work exists to support a scale we don't have yet." },
+        { "theme": "Design systems (waning)", "weight": 0.2, "example_quote": "Still maintaining the design system, but my heart's in the side projects now." }
+      ],
+      "tags": ["side-projects", "anti-scale", "design-systems", "corporate-process", "frontend-craft", "broadcast-mode", "low-emoji"],
+      "free_tags": ["side-projects", "weekend-builds", "anti-process", "questioning-scale", "design-systems", "reading-tracker"],
+      "voice_reading": "The voice loosens. Hashtags fall from 42% to 23% and replies more than double — she's starting to talk with people, not just broadcast. Questions tick up (15%), reflecting a year of doubt. Still long-ish sentences and almost no emoji, but the topics drift from the design system toward what she does on nights and weekends.",
+      "entities": [ { "name": "@devpeer_demo", "relationship": "sounding board for the discontent" }, { "name": "@indiehq_demo", "relationship": "community she starts orbiting" } ],
+      "notable_tweets": [
+        { "text": "Half the complexity at work exists to support a scale we don't have yet.", "why": "The anti-scale thesis that becomes a core belief in the indie era." }
+      ],
+      "monthly": [
+        { "month": "2023-05", "focus": "First public side project", "free_tags": ["side-projects"], "note": "Reading tracker shipped to ~30 users." },
+        { "month": "2023-11", "focus": "Open doubt about staying", "free_tags": ["anti-scale", "questioning-scale"], "note": "Tone shifts toward leaving." }
+      ]
+    },
+    {
+      "period": "2024",
+      "era_label": "The leap: quitting → indie",
+      "stats": { "tweets": 121, "originals": 103, "replies": 18, "avg_chars": 158.2, "avg_sentence_len_words": 13.4, "emoji_tweet_pct": 4.1, "hashtag_tweet_pct": 9.1, "link_tweet_pct": 31.4, "question_pct": 11.6, "exclaim_pct": 14.0, "vocab_richness_ttr": 0.311, "top_hashtags": [{ "k": "#buildinpublic", "n": 12 }], "top_mentions": [{ "k": "@devpeer_demo", "n": 14 }, { "k": "@indiehq_demo", "n": 9 }], "lang_mix": [{ "k": "en", "n": 121 }] },
+      "content_themes": [
+        { "theme": "Quitting & going indie", "weight": 0.36, "example_quote": "Quit BigCorp today. Three years of process. I want to feel the whole loop again — idea to user — without a Jira ticket in between." },
+        { "theme": "Anti-premature-scale", "weight": 0.24, "example_quote": "Hot take: most 'scalability' problems are imaginary. You will not have a million users. Build for the ten you have." },
+        { "theme": "Local-first emerges", "weight": 0.22, "example_quote": "The cloud was a mistake for small apps. Your data should live on your device. Sync is a feature, not a foundation." },
+        { "theme": "First indie ships", "weight": 0.18, "example_quote": "First indie app shipped in a weekend. A tiny offline notes thing. 12 users. I have never been happier." }
+      ],
+      "tags": ["indie-hacking", "anti-scale", "local-first", "side-projects", "frontend-craft", "low-emoji"],
+      "free_tags": ["quit-bigcorp", "indie", "local-first", "anti-scale", "weekend-ship", "offline-first", "the-loop"],
+      "voice_reading": "The pivot year, and the metrics show it: hashtags collapse to 9%, exclamations jump to 14%, sentences shorten to ~13 words. This is the punchy, energized voice of someone who just got their freedom back. Vocabulary richness drops as she begins circling a tight set of recurring slogans (the loop, build for the ten, local-first).",
+      "entities": [ { "name": "@devpeer_demo", "relationship": "now a fellow indie, traded notes" } ],
+      "notable_tweets": [
+        { "text": "Quit BigCorp today. Three years of process. I want to feel the whole loop again — idea to user — without a Jira ticket in between.", "why": "The hinge of the entire account." },
+        { "text": "First indie app shipped in a weekend. A tiny offline notes thing. 12 users. I have never been happier.", "why": "Sets the small-and-happy template for the indie era." }
+      ],
+      "monthly": [
+        { "month": "2024-09", "focus": "Quits BigCorp", "free_tags": ["quit-bigcorp", "indie"], "note": "The pivot. Engagement spikes." },
+        { "month": "2024-10", "focus": "First indie app", "free_tags": ["weekend-ship", "offline-first"], "note": "12 users, 'never been happier'." },
+        { "month": "2024-12", "focus": "Local-first conviction forms", "free_tags": ["local-first"], "note": "Begins the data-ownership argument." }
+      ]
+    },
+    {
+      "period": "2025",
+      "era_label": "Indie hacker: local-first + build in public",
+      "stats": { "tweets": 168, "originals": 109, "replies": 59, "avg_chars": 171.5, "avg_sentence_len_words": 12.8, "emoji_tweet_pct": 5.3, "hashtag_tweet_pct": 1.2, "link_tweet_pct": 24.4, "question_pct": 10.1, "exclaim_pct": 13.7, "vocab_richness_ttr": 0.243, "top_hashtags": [{ "k": "#buildinpublic", "n": 3 }], "top_mentions": [{ "k": "@indiehq_demo", "n": 17 }, { "k": "@devpeer_demo", "n": 12 }], "lang_mix": [{ "k": "en", "n": 168 }] },
+      "content_themes": [
+        { "theme": "Local-first evangelism", "weight": 0.3, "example_quote": "local-first isn't nostalgia. it's the only way to build software that respects the person using it. own your data, own your tools." },
+        { "theme": "Building in public", "weight": 0.26, "example_quote": "Shipping in public changed everything for me. Every bug fix is a tweet. Every user is a conversation. The build IS the marketing." },
+        { "theme": "Revenue & sustainability", "weight": 0.24, "example_quote": "Crossed $2k MRR on the notes app today. From 12 users to 800 paying in 8 months. Small and sharp beats big and generic, every time." },
+        { "theme": "Point-of-view product philosophy", "weight": 0.2, "example_quote": "the moat was never the tech. it's having a point of view. generic tools are already free." }
+      ],
+      "tags": ["local-first", "build-in-public", "revenue-mrr", "product-philosophy", "indie-hacking", "anti-scale", "low-emoji"],
+      "free_tags": ["local-first", "build-in-public", "mrr", "point-of-view", "small-and-sharp", "data-ownership", "notes-app"],
+      "voice_reading": "Peak indie voice. Hashtags are effectively gone (1.2%) while replies surge to 59 — she's running a conversation, not a broadcast. The lowest vocabulary richness of any year (0.24) is not carelessness but consolidation: she's repeating a tight doctrine (local-first, build-in-public, small & sharp) until it lands. Short, punchy, exclamation-flecked.",
+      "entities": [ { "name": "@indiehq_demo", "relationship": "home community" }, { "name": "@devpeer_demo", "relationship": "peer she publicly compares notes with" } ],
+      "notable_tweets": [
+        { "text": "Crossed $2k MRR on the notes app today. From 12 users to 800 paying in 8 months. Small and sharp beats big and generic, every time.", "why": "Proof the small-and-sharp thesis paid off." }
+      ],
+      "monthly": [
+        { "month": "2025-01", "focus": "Local-first manifesto thread", "free_tags": ["local-first", "data-ownership"], "note": "Most-shared post to date." },
+        { "month": "2025-05", "focus": "Build-in-public becomes the strategy", "free_tags": ["build-in-public"], "note": "" },
+        { "month": "2025-07", "focus": "$2k MRR milestone", "free_tags": ["mrr", "revenue"], "note": "Revenue becomes a recurring topic." }
+      ]
+    },
+    {
+      "period": "2026",
+      "era_label": "Point of view as moat",
+      "stats": { "tweets": 143, "originals": 92, "replies": 51, "avg_chars": 183.0, "avg_sentence_len_words": 13.6, "emoji_tweet_pct": 4.2, "hashtag_tweet_pct": 0.7, "link_tweet_pct": 21.0, "question_pct": 9.8, "exclaim_pct": 11.2, "vocab_richness_ttr": 0.252, "top_hashtags": [], "top_mentions": [{ "k": "@indiehq_demo", "n": 14 }, { "k": "@devpeer_demo", "n": 8 }], "lang_mix": [{ "k": "en", "n": 143 }] },
+      "content_themes": [
+        { "theme": "Software as self-expression", "weight": 0.32, "example_quote": "software is just a way to hand someone your point of view. Make it personal or don't bother." },
+        { "theme": "Mentoring would-be indies", "weight": 0.28, "example_quote": "You don't get ready first. You start, and the readiness shows up later." },
+        { "theme": "Naming her own contradictions", "weight": 0.22, "example_quote": "I preach 'build for the ten users you have' but I refresh my MRR chart ten times a day. Growth brain is hard to quit." }
+      ],
+      "tags": ["product-philosophy", "mentoring", "build-in-public", "indie-hacking", "local-first", "revenue-mrr", "low-emoji"],
+      "free_tags": ["point-of-view", "software-as-expression", "mentoring", "readiness", "self-aware", "growth-brain"],
+      "voice_reading": "The voice matures into aphorism. Hashtags are essentially zero, sentences settle back toward ~14 words as she writes more reflective one-liners than punchy announcements. Replies stay high (51) — she now spends real energy encouraging others. Notably, she begins turning the skepticism on herself, naming the gap between her anti-growth creed and her MRR-watching.",
+      "entities": [ { "name": "@indiehq_demo", "relationship": "community she now mentors within" } ],
+      "notable_tweets": [
+        { "text": "software is just a way to hand someone your point of view. Make it personal or don't bother.", "why": "The thesis the whole arc was building toward." },
+        { "text": "I preach 'build for the ten users you have' but I refresh my MRR chart ten times a day. Growth brain is hard to quit.", "why": "Self-aware enough to flag her own contradiction — the trait that makes the voice trustworthy." }
+      ],
+      "monthly": [
+        { "month": "2026-02", "focus": "Mentoring threads for new indies", "free_tags": ["mentoring", "readiness"], "note": "" },
+        { "month": "2026-05", "focus": "Reflective 'software as self-expression' essay", "free_tags": ["point-of-view", "software-as-expression"], "note": "Most-quoted post of the year." }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,150 @@
+{
+  "type": "object",
+  "properties": {
+    "type": { "type": "string", "const": "x-persona" },
+    "handle": { "type": "string" },
+    "sample": {
+      "type": "object",
+      "description": "What this profile is actually based on. Keeps the analysis honest about its evidence.",
+      "properties": {
+        "tweet_count": { "type": "integer" },
+        "date_range_start": { "type": "string" },
+        "date_range_end": { "type": "string" },
+        "original_vs_amplified": { "type": "string", "description": "Rough split of original tweets vs retweets/replies, e.g. '70% original, 30% RT/reply'." },
+        "note": { "type": "string", "description": "Any sampling caveat, e.g. 'only most recent 800 tweets', 'API returned partial window'." }
+      },
+      "required": ["tweet_count", "date_range_start", "date_range_end", "original_vs_amplified", "note"],
+      "additionalProperties": false
+    },
+    "how_they_think": {
+      "type": "object",
+      "description": "The mind behind the account, not just the metrics.",
+      "properties": {
+        "worldview": { "type": "string", "description": "One-paragraph synthesis of how they see the world." },
+        "mental_models": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": { "type": "string" },
+              "description": { "type": "string" },
+              "evidence_quote": { "type": "string", "description": "A verbatim tweet that shows this model in action." }
+            },
+            "required": ["name", "description", "evidence_quote"],
+            "additionalProperties": false
+          }
+        },
+        "core_beliefs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "belief": { "type": "string" },
+              "confidence": { "type": "number", "description": "0-1: how strongly the corpus supports attributing this belief." },
+              "evidence_quote": { "type": "string" }
+            },
+            "required": ["belief", "confidence", "evidence_quote"],
+            "additionalProperties": false
+          }
+        },
+        "reasoning_style": { "type": "string", "description": "How they argue: first-principles, empirical, contrarian, analogical, narrative, data-driven, vibes, etc." },
+        "tensions_or_blind_spots": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Internal contradictions, topics they dodge, or unexamined assumptions."
+        }
+      },
+      "required": ["worldview", "mental_models", "core_beliefs", "reasoning_style", "tensions_or_blind_spots"],
+      "additionalProperties": false
+    },
+    "how_they_speak": {
+      "type": "object",
+      "description": "The voice/style DNA.",
+      "properties": {
+        "register": { "type": "string", "description": "Overall tone: formal/casual, earnest/ironic, warm/combative, etc." },
+        "signature_devices": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "device": { "type": "string", "description": "e.g. lowercase, em-dash asides, one-liners, numbered threads, rhetorical questions, dunking, greentext." },
+              "example": { "type": "string", "description": "A verbatim tweet showing the device." }
+            },
+            "required": ["device", "example"],
+            "additionalProperties": false
+          }
+        },
+        "vocabulary": { "type": "array", "items": { "type": "string" }, "description": "Characteristic words, phrases, and coinages they reach for." },
+        "sentence_patterns": { "type": "string", "description": "Typical sentence length, rhythm, punctuation habits." },
+        "emoji_and_formatting": { "type": "string", "description": "Emoji use, capitalization, line breaks, thread structure." },
+        "imitation_prompt": { "type": "string", "description": "A ready-to-use system prompt that would let an AI write a tweet AS this person. Optional payload for voice-matching use cases." }
+      },
+      "required": ["register", "signature_devices", "vocabulary", "sentence_patterns", "emoji_and_formatting", "imitation_prompt"],
+      "additionalProperties": false
+    },
+    "topics": {
+      "type": "object",
+      "properties": {
+        "clusters": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "topic": { "type": "string" },
+              "weight": { "type": "number", "description": "0-1 share of attention this topic gets in the corpus." },
+              "stance": { "type": "string", "description": "Their position/angle on it." },
+              "example_quote": { "type": "string" }
+            },
+            "required": ["topic", "weight", "stance", "example_quote"],
+            "additionalProperties": false
+          }
+        },
+        "people_and_entities": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": { "type": "string" },
+              "relationship": { "type": "string", "description": "e.g. amplifies, argues with, cites as authority, mentors, mocks." }
+            },
+            "required": ["name", "relationship"],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": ["clusters", "people_and_entities"],
+      "additionalProperties": false
+    },
+    "dynamics": {
+      "type": "object",
+      "description": "The longitudinal view — how the account has changed across the sample window. This is the differentiated part; only fill it when timestamps support it.",
+      "properties": {
+        "trajectory": { "type": "string", "description": "Narrative of how the account evolved over the window. Empty string if the corpus has no usable time span." },
+        "shifts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "dimension": { "type": "string", "enum": ["topic", "stance", "tone", "activity", "audience"] },
+              "from": { "type": "string" },
+              "to": { "type": "string" },
+              "approx_when": { "type": "string", "description": "Rough date or period the shift happened." },
+              "evidence_quote": { "type": "string" }
+            },
+            "required": ["dimension", "from", "to", "approx_when", "evidence_quote"],
+            "additionalProperties": false
+          }
+        },
+        "emerging": { "type": "array", "items": { "type": "string" }, "description": "Topics/interests clearly rising recently." },
+        "fading": { "type": "array", "items": { "type": "string" }, "description": "Topics they used to post about and have dropped." }
+      },
+      "required": ["trajectory", "shifts", "emerging", "fading"],
+      "additionalProperties": false
+    },
+    "summary": { "type": "string", "description": "Executive paragraph a human can read in 20 seconds." },
+    "confidence": { "type": "number", "description": "0-1 overall confidence given corpus size and quality." },
+    "notes": { "type": "string", "description": "Data limitations, caveats, anything that would change the read with more data." }
+  },
+  "required": ["type", "handle", "sample", "how_they_think", "how_they_speak", "topics", "dynamics", "summary", "confidence", "notes"],
+  "additionalProperties": false
+}

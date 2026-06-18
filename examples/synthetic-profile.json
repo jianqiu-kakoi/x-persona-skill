@@ -1,0 +1,153 @@
+{
+  "type": "x-persona",
+  "handle": "syntheticbuilds",
+  "sample": {
+    "tweet_count": 14,
+    "date_range_start": "2024-02-12T17:04:00.000Z",
+    "date_range_end": "2026-04-27T18:00:00.000Z",
+    "original_vs_amplified": "~86% original (12), ~14% replies (2), 0 retweets",
+    "note": "Synthetic example account. Tweets span a continuous ~2-year arc, so the longitudinal read compares the early BigCorp era (early-mid 2024) against the indie era (late 2024 onward)."
+  },
+  "how_they_think": {
+    "worldview": "She sees most software process as friction between a person and the thing they want to make, and treats removing that friction as the whole game. Competence and confidence come from completing the full loop — idea to user — not from credentials or readiness. She is skeptical of scale-first thinking and cloud-by-default architecture, and believes software should serve the individual using it, including by keeping their data on their own device.",
+    "mental_models": [
+      {
+        "name": "Build for the ten users you have",
+        "description": "Optimize for the small set of real users in front of you, not a hypothetical million. Most scalability concerns are premature and serve as an excuse not to ship.",
+        "evidence_quote": "Hot take: most 'scalability' problems are imaginary. You will not have a million users. Build for the ten you have."
+      },
+      {
+        "name": "Readiness is post-hoc",
+        "description": "You don't acquire readiness and then act; you act, and readiness arrives as a consequence. Waiting to feel qualified is the failure mode.",
+        "evidence_quote": "You don't get ready first. You start, and the readiness shows up later."
+      },
+      {
+        "name": "A point of view is the moat",
+        "description": "Generic capability is commoditized and free; durable differentiation comes from having an opinion baked into the product, not from the underlying technology.",
+        "evidence_quote": "the moat was never the tech. it's having a point of view. generic tools are already free."
+      },
+      {
+        "name": "The build is the marketing",
+        "description": "Distribution isn't a downstream step bolted on after the product; shipping in public makes the act of building itself the go-to-market.",
+        "evidence_quote": "Every bug fix is a tweet. Every user is a conversation. The build IS the marketing."
+      }
+    ],
+    "core_beliefs": [
+      {
+        "belief": "Small, opinionated products beat big generic ones.",
+        "confidence": 0.9,
+        "evidence_quote": "Small and sharp beats big and generic, every time."
+      },
+      {
+        "belief": "Software should keep the user's data on their own device; cloud sync is a feature, not a foundation.",
+        "confidence": 0.85,
+        "evidence_quote": "Your data should live on your device. Sync is a feature, not a foundation."
+      },
+      {
+        "belief": "Software is fundamentally a way to transmit a personal point of view.",
+        "confidence": 0.85,
+        "evidence_quote": "software is just a way to hand someone your point of view. Make it personal or don't bother."
+      }
+    ],
+    "reasoning_style": "Aphoristic and contrarian. She leads with a sharp, often deliberately provocative claim ('Hot take:', 'The cloud was a mistake for small apps'), then grounds it in her own first-hand experience — quitting BigCorp, shipping a weekend app, hitting an MRR number. Reasoning is inductive: she generalizes from her own build loop outward to a rule, and she is willing to name when her own behavior contradicts her stated principle.",
+    "tensions_or_blind_spots": [
+      "Preaches 'build for the ten users you have' while openly admitting she refreshes her MRR chart ten times a day — the anti-growth philosophy sits against real growth-seeking behavior, which she acknowledges.",
+      "Strong claims ('most scalability problems are imaginary', 'the cloud was a mistake') are generalized from a single small indie app and may not transfer to higher-scale or team contexts.",
+      "Evidence base is entirely her own journey; 'software should respect the person using it' is asserted more as a value than argued against counterexamples."
+    ]
+  },
+  "how_they_speak": {
+    "register": "Earnest, energetic, and self-aware indie-builder voice — encouraging toward other developers, occasionally combative toward orthodoxy, but quick to turn the skepticism on herself.",
+    "signature_devices": [
+      {
+        "device": "Provocative opener / hot take",
+        "example": "Hot take: most 'scalability' problems are imaginary. You will not have a million users. Build for the ten you have."
+      },
+      {
+        "device": "Antithesis / sharp contrast",
+        "example": "Small and sharp beats big and generic, every time."
+      },
+      {
+        "device": "Lowercase, terse aside in replies",
+        "example": "the moat was never the tech. it's having a point of view. generic tools are already free."
+      },
+      {
+        "device": "Self-deprecating admission of contradiction",
+        "example": "I preach 'build for the ten users you have' but I refresh my MRR chart ten times a day. Growth brain is hard to quit."
+      }
+    ],
+    "vocabulary": ["ship", "the loop", "local-first", "small & sharp", "build in public", "point of view", "indie", "MRR"],
+    "sentence_patterns": "Short, punchy, often two-beat: a claim followed by a clipped reinforcement ('Small and sharp beats big and generic, every time.'). Frequent fragments. Replies drop capitalization; main-feed posts keep it.",
+    "emoji_and_formatting": "Almost no emoji. Plain text, no threads in this sample, no hashtags. Emphasis comes from caps on a single word (the build IS the marketing) rather than formatting.",
+    "imitation_prompt": "Write as an indie developer two years out of a big-company job. Voice: earnest, energetic, a little contrarian, but self-aware enough to call out your own contradictions. Lead with a sharp claim, then back it with a concrete personal build detail (a weekend ship, an MRR number, a user count). Favor short two-beat sentences and fragments. Drop capitalization in replies, keep it in main posts. Almost no emoji, no hashtags. Recurring themes: ship over plan, build for the ten users you have, local-first and owning your data, small & sharp over big & generic, and software as a way to hand someone your point of view."
+  },
+  "topics": {
+    "clusters": [
+      {
+        "topic": "Indie hacking / shipping solo",
+        "weight": 0.3,
+        "stance": "Going indie and completing the full idea-to-user loop is the path to satisfaction and skill; just ship.",
+        "example_quote": "First indie app shipped in a weekend. A tiny offline notes thing. 12 users. I have never been happier."
+      },
+      {
+        "topic": "Local-first software & data ownership",
+        "weight": 0.22,
+        "stance": "Data should live on the user's device; cloud-by-default is wrong for small apps.",
+        "example_quote": "local-first isn't nostalgia. it's the only way to build software that respects the person using it. own your data, own your tools."
+      },
+      {
+        "topic": "Building in public / distribution",
+        "weight": 0.18,
+        "stance": "Shipping in public is the marketing; growth comes from the visible build, not a separate GTM step.",
+        "example_quote": "Shipping in public changed everything for me. Every bug fix is a tweet. Every user is a conversation. The build IS the marketing."
+      },
+      {
+        "topic": "Anti-process / anti-premature-scale",
+        "weight": 0.18,
+        "stance": "Corporate process and scalability worship are friction that stops people from shipping.",
+        "example_quote": "Hot take: most 'scalability' problems are imaginary. You will not have a million users. Build for the ten you have."
+      },
+      {
+        "topic": "Product philosophy (point of view as moat)",
+        "weight": 0.12,
+        "stance": "Opinionated, personal products win; generic capability is commoditized.",
+        "example_quote": "Small and sharp beats big and generic, every time."
+      }
+    ],
+    "people_and_entities": [
+      { "name": "@devpeer_demo", "relationship": "peer she replies to and trades takes with" },
+      { "name": "BigCorp (former employer)", "relationship": "the foil she defines her indie identity against" }
+    ]
+  },
+  "dynamics": {
+    "trajectory": "A clean two-era arc over ~2 years. In early-to-mid 2024 she is an employee on a corporate design-system team, frustrated by process and posting about meetings and component libraries. After quitting in September 2024 she becomes an indie builder, and the account's center of gravity moves to shipping, local-first values, building in public, and revenue. Tone shifts from venting about constraints to evangelizing a worldview, and posting becomes more aphoristic and identity-driven.",
+    "shifts": [
+      {
+        "dimension": "topic",
+        "from": "corporate frontend / design systems / process complaints",
+        "to": "indie shipping, local-first, build-in-public, MRR",
+        "approx_when": "Sep–Oct 2024 (around quitting BigCorp)",
+        "evidence_quote": "Quit BigCorp today. Three years of process. I want to feel the whole loop again — idea to user — without a Jira ticket in between."
+      },
+      {
+        "dimension": "stance",
+        "from": "frustrated insider working within the process",
+        "to": "evangelist for owning your tools and data",
+        "approx_when": "Dec 2024 – Jan 2025",
+        "evidence_quote": "local-first isn't nostalgia. it's the only way to build software that respects the person using it. own your data, own your tools."
+      },
+      {
+        "dimension": "tone",
+        "from": "venting, problem-focused",
+        "to": "aphoristic, identity- and mission-driven",
+        "approx_when": "2025",
+        "evidence_quote": "You don't get ready first. You start, and the readiness shows up later."
+      }
+    ],
+    "emerging": ["local-first / data ownership", "revenue and MRR as a topic", "mentoring other would-be indie devs"],
+    "fading": ["design-system / component-library work", "framework-war and tooling debates", "complaints about meetings and process"]
+  },
+  "summary": "@syntheticbuilds (synthetic) is a frontend developer who left a big-company design-system team in late 2024 to go indie, and whose account became a build-in-public chronicle organized around a few sharp convictions: ship over plan, build for the ten users you have, keep data local, and win with a point of view rather than generic capability. She reasons aphoristically from her own build loop, evangelizes local-first software, and is notably willing to call out the tension between her anti-growth philosophy and her own growth-watching. The clearest signal in the corpus is the two-era pivot from frustrated insider to indie evangelist.",
+  "confidence": 0.78,
+  "notes": "Synthetic demonstration account with only 14 tweets, so confidence is moderate by construction; a real run would draw on hundreds to thousands of tweets. The arc is continuous (no gaps), which makes the longitudinal read cleaner than many real accounts. All evidence quotes are verbatim from examples/synthetic-account.json."
+}
