@@ -13,6 +13,17 @@ Given a corpus of one account's tweets, x-persona builds a deep, evidence-ground
 - **What they engage with** — weighted topic clusters with their *angle* on each, and who they amplify or argue with.
 - **How it changed** — a longitudinal report: per-year + per-month breakdown, dated shifts, and a tag matrix tracking what rose and fell.
 
+## Install
+
+As a Claude Code plugin:
+
+```
+/plugin marketplace add jianqiu-kakoi/x-persona-skill
+/plugin install x-persona@x-persona-skill
+```
+
+Then ask Claude to profile an account (give it a corpus — see [Usage](#usage)).
+
 ## Why it's different
 
 The "personality from tweets" space is crowded at the shallow end — viral toys that hand you trait adjectives, and Big-Five scorers that hand you OCEAN numbers. Two things those don't do, and this does:
