@@ -39,7 +39,13 @@
   .sub{font-size:clamp(17px,2.1vw,21px); color:#cfcabd; max-width:62ch; margin:32px 0 0; line-height:1.55}
   .sub b{color:var(--paper); font-weight:600}
 
-  .pipeline{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin:54px 0 90px}
+  .showcase{margin:48px 0 0}
+  .showcase img{width:100%; display:block; border:1px solid var(--line); border-radius:12px; box-shadow:0 24px 70px rgba(0,0,0,.45)}
+  .showcase figcaption{margin-top:13px; font-family:var(--mono); font-size:12.5px; color:var(--faint)}
+  .showcase figcaption a{color:var(--signal); text-decoration:none}
+  .showcase figcaption a:hover{text-decoration:underline}
+
+  .pipeline{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin:42px 0 90px}
   .step{background:var(--ink-2); border:1px solid var(--line); border-radius:8px; padding:24px; position:relative}
   .step .sn{font-family:var(--mono); font-size:11px; color:var(--signal); letter-spacing:.2em}
   .step h4{font-family:var(--serif); font-weight:600; font-size:21px; margin:12px 0 8px}
@@ -69,6 +75,10 @@
       <h1 class="tagline reveal">Read an X account<br>like you'd <em>study a person.</em></h1>
       <p class="sub reveal">Point it at any X/Twitter handle and it reads the <b>whole timeline</b> — then returns a structured dossier of <b>how they think, how they speak, what they engage with, and how all of it has changed over the years.</b> Not a personality quiz. Every claim is backed by a verbatim tweet.</p>
     </section>
+    <figure class="showcase reveal">
+      <img src="docs/report-matrix.png" alt="A tag-over-time matrix: an account's topics rising and falling across years">
+      <figcaption>Topics rising and falling across the years, from the annual report. <a href="report.html">See a full report →</a> &nbsp;· synthetic demo</figcaption>
+    </figure>
     <div class="pipeline">
       <div class="step"><span class="sn">01 / corpus</span><h4>Bring a timeline</h4><p>A JSON array of tweets — from your X data export, the API, anywhere. The tool itself never scrapes.</p><div class="cmd">corpus.json · see corpus.schema.json</div></div>
       <div class="step"><span class="sn">02 / analyze</span><h4>Read for patterns</h4><p>Separate original voice from replies, quote the evidence, and read time as a dimension.</p><div class="cmd">claude · run the x-persona skill</div></div>
